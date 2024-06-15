@@ -1,9 +1,9 @@
-#define RED 4
-#define GREEN 3
-#define BLUE 2
+#define RED 4 // RED를 4로 선언
+#define GREEN 3 // GREEN을 3으로 선언
+#define BLUE 2 // BLUE를 2로 선언
 
-#define TRIG 5
-#define ECHO 6
+#define TRIG 5 // TRIG를 5로 선언
+#define ECHO 6 // ECHO를 6으로 선언
 
 void setup() {
   // put your setup code here, to run once:
@@ -13,7 +13,7 @@ void setup() {
   pinMode(TRIG, OUTPUT);    // 초음파 송신부를 출력 설정
   pinMode(ECHO, INPUT);     // 초음파 수신부를 입력 설정
   
-  pinMode(RED, OUTPUT;      // 빨간색 LED 출력 설정
+  pinMode(RED, OUTPUT);      // 빨간색 LED 출력 설정
   pinMode(GREEN, OUTPUT);   // 초록색 LED 출력 설정
   //pinMode(BLUE, OUTPUT);  // 파란색 LED 출력 설정
 }
@@ -21,8 +21,8 @@ void setup() {
 void loop() {
   // put your main code here, to run repeatedly:
   
-  digitalWrite(trig, LOW);
-  digitalWrite(echo, LOW);
+  digitalWrite(TRIG, LOW);
+  //digitalWrite(ECHO, LOW);
   delayMicroseconds(2);
   digitalWrite(TRIG, HIGH); 
   delayMicroseconds(10);
@@ -30,8 +30,10 @@ void loop() {
 
   unsigned long duration = pulseIn(ECHO, HIGH);
 
-  float distance = duration / 29.0 / 2.0; // 초음파는 1초당 340m를 이동(29us 당 1cm를 이동)
+  //float distance = duration / 29.0 / 2.0; // 초음파는 1초당 340m를 이동(29us 당 1cm를 이동)
                                           // 따라서, 초음파의 이동 거리 = duration(왕복에 걸린시간) / 29 / 2
+
+  float distance = ((float)(340 * duration) / 10000) / 2;
 
   Serial.print(distance);   // 측정된 거리 값를 시리얼 모니터에 출력합니다.
   Serial.println("cm");
